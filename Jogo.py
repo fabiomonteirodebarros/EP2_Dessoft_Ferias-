@@ -1,8 +1,7 @@
-from Funcoes import *
-from Questoes import *
-dic_vazio=[]
+from funcoes import *
+from questoes import *
 problema=valida_questoes(dic)
-if len(problema)!= problema.count(dic_vazio):
+if len(problema)!= problema.count({}):
     print('A base está errada')
     quit()
 
@@ -27,6 +26,6 @@ acerto= True
 
 if sim == 'sim':
     while acerto:
-       i+=1
+       
 
 
