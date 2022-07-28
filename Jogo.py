@@ -1,3 +1,4 @@
+from cgitb import reset
 from funcoes import *
 from questoes import *
 from valor import *
@@ -10,16 +11,28 @@ if len(problema)!= problema.count({}):
 
 transforma= transforma_base(dic)
 
-
+class bcolors:
+  cinza = '\033[1;30m'
+  roxo = '\033[0;35m'
+  vermelho = '\033[0;31m'
+  amarelo = '\033[1;33m'
+  azul_claro = '\033[1;36m'
+  azul = '\033[1;34m'
+  reset = '\033[0m'
+  verde = '\033[1;32m'
+  laranja = '\033[1;32m'
 
 nome = input('Digite o seu nome: ')
 
-print ('Ok, {0}'.format(nome))
+print ('Ok, {}'.format(nome))
 print('Segue abaixo um manual de regras:')
-print('- Você tem direito de realizar 3 pulos')
-print('- Você tem direito de pedir 2 ajudas')
-print('- As dificuldades das perguntas vão aumentando conforme o jogador acerta as respostas')
-print('- Os comandos possiveis são: A - B - C - D - ajuda - pula - parar')
+print(bcolors.amarelo + '-----------------------------------------------------------------------------------------------' + bcolors.reset)
+print(bcolors.amarelo +'|'+ bcolors.reset +'     Você tem direito de realizar 3 pulos                                                    '+ bcolors.amarelo +'|')
+print(bcolors.amarelo +'|'+ bcolors.reset +'     Você tem direito de pedir 2 ajudas                                                      '+ bcolors.amarelo +'|')
+print(bcolors.amarelo +'|'+ bcolors.reset +'    As dificuldades das perguntas vão aumentando conforme o jogador acerta as respostas      '+ bcolors.amarelo +'|')
+print(bcolors.amarelo +'|'+ bcolors.reset +'     Os comandos possiveis são: A - B - C - D - ajuda - pula - parar                         '+ bcolors.amarelo +'|')
+print(bcolors.amarelo +'|'+ bcolors.reset +'                                                                                             '+ bcolors.amarelo +'|')
+print(bcolors.amarelo +'-----------------------------------------------------------------------------------------------'+ bcolors.reset)
 print('BOM JOGO!')
 
 
@@ -54,7 +67,7 @@ if sim == 'sim':
         if resposta == pergunta['correta']:
             acerto += 1
             indice += 1
-            print('Você está com R${}'.format(lista_de_valores[i]))
+            print(bcolors.verde + 'Acertou! Seu prêmio atual é R$ {:.2f}\n\n\n'.format(lista_de_valores[i]) + bcolors.reset)
             i += 1
             pergunta = sorteia_questao_inedida(transforma, nivel, ja_sorteada)
 
