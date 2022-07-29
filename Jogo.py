@@ -22,18 +22,20 @@ class bcolors:
   verde = '\033[1;32m'
   laranja = '\033[1;32m'
 
-nome = input('Digite o seu nome: ')
+nome = input(bcolors.azul+'Digite o seu nome: ')
 
-print ('Ok, {}'.format(nome))
-print('Segue abaixo um manual de regras:')
+
+
+print (bcolors.cinza+'Ok, {}'.format(nome))
+print(bcolors.cinza+'Segue abaixo um manual de regras:')
 print(bcolors.amarelo + '-----------------------------------------------------------------------------------------------' + bcolors.reset)
-print(bcolors.amarelo +'|'+ bcolors.reset +'     Você tem direito de realizar 3 pulos                                                    '+ bcolors.amarelo +'|')
-print(bcolors.amarelo +'|'+ bcolors.reset +'     Você tem direito de pedir 2 ajudas                                                      '+ bcolors.amarelo +'|')
-print(bcolors.amarelo +'|'+ bcolors.reset +'    As dificuldades das perguntas vão aumentando conforme o jogador acerta as respostas      '+ bcolors.amarelo +'|')
-print(bcolors.amarelo +'|'+ bcolors.reset +'     Os comandos possiveis são: A - B - C - D - ajuda - pula - parar                         '+ bcolors.amarelo +'|')
-print(bcolors.amarelo +'|'+ bcolors.reset +'                                                                                             '+ bcolors.amarelo +'|')
+print(bcolors.amarelo +'|'+ bcolors.cinza +'     Você tem direito de realizar 3 pulos                                                    '+ bcolors.amarelo +'|')
+print(bcolors.amarelo +'|'+ bcolors.cinza +'     Você tem direito de pedir 2 ajudas                                                      '+ bcolors.amarelo +'|')
+print(bcolors.amarelo +'|'+ bcolors.cinza +'    As dificuldades das perguntas vão aumentando conforme o jogador acerta as respostas      '+ bcolors.amarelo +'|')
+print(bcolors.amarelo +'|'+ bcolors.cinza +'     Os comandos possiveis são: A - B - C - D - ajuda - pula - parar                         '+ bcolors.amarelo +'|')
+print(bcolors.amarelo +'|'+ bcolors.cinza +'                                                                                             '+ bcolors.amarelo +'|')
 print(bcolors.amarelo +'-----------------------------------------------------------------------------------------------'+ bcolors.reset)
-print('BOM JOGO!')
+print(bcolors.cinza+'BOM JOGO!'+bcolors.reset)
 
 
 print('O jogo já vai começar!')
@@ -73,31 +75,37 @@ if sim == 'sim':
 
         elif resposta== 'pula':
             pulo -= 1
-            print('Você utilizou um de seus pulos')
-            acerto += 1
-            indice += 1
-            i += 1
-            pergunta = sorteia_questao_inedida(transforma, nivel, ja_sorteada)
+            if pulo <=0:
+                print(bcolors.vermelho+'Você já gastou todos os seus pulos'+bcolors.reset)
+            else:
+                print(bcolors.amarelo+'Você utilizou um de seus pulos. Seu prêmio atual é R$ {:.2f}'.format(lista_de_valores[i])+bcolors.reset)
+                print(bcolors.laranja+'Agora restam {} pulo(s)'.format(pulo)+bcolors.reset)
+                acerto += 1
+                indice += 1
+                i += 1
+                pergunta = sorteia_questao_inedida(transforma, nivel, ja_sorteada)
 
         elif resposta == 'ajuda':
             ajuda-=1
-            help = gera_ajuda(pergunta)
-            print(help)
-            print('Número de ajudas disponíveis: {}'.format(ajuda))
-            resposta= input('\nDigite a alternativa correta: ')
+            if ajuda <=0:
+                print(bcolors.vermelho+'Você não tem mais ajuda disponível'+bcolors.reset)
+            else:
+                help = gera_ajuda(pergunta)
+                print(bcolors.verde+help+bcolors.reset)
+                print('Número de ajudas disponíveis: {}'.format(ajuda))
+                resposta= input('\nDigite a alternativa correta: ')
         
         elif resposta not in lista_comandos:
-            print('Essa opção é inválida!')
-            print('Os comandos possiveis são: A - B - C - D - ajuda - pula - parar')
-            resposta= input('\nDigite a alternativa correta: ')
+            print(bcolors.vermelho+'Essa opção é inválida!')
+            print(bcolors.laranja+'Os comandos possiveis são: A - B - C - D - ajuda - pula - parar'+bcolors.reset)
 
         elif resposta == 'sair':
             jogo = False
-            print('\nQue pena! Você saiu com R${:.2f}'.format(lista_de_valores[i]))
+            print(bcolors.roxo+'\nQue pena! Você saiu com R${:.2f}'.format(lista_de_valores[i]))
 
         else:
             jogo = False
-            print('O jogo acabou para você, espero que tenha aproveitado!')
+            print(bcolors.roxo+'O jogo acabou para você, espero que tenha aproveitado!')
 
 
         
