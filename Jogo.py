@@ -40,7 +40,6 @@ print(bcolors.cinza+'BOM JOGO!'+bcolors.reset)
 
 print('O jogo já vai começar!')
 sim= input('Digite "sim" se deseja começar o jogo ')
-jogo= True
 acerto=0
 indice = 1
 i = 0
@@ -48,12 +47,13 @@ pulo= 3
 ajuda =2
 ja_sorteada = []
 lista_comandos = ['A', 'B', 'C', 'D', 'ajuda', 'pula', 'parar']
+jogar_novamente='S'
 
 if sim == 'sim':
 
     pergunta = sorteia_questao_inedida(transforma, 'facil', ja_sorteada)
 
-    while jogo:
+    while jogar_novamente:
         
         if acerto <= 3:
             nivel = 'facil'
@@ -100,12 +100,27 @@ if sim == 'sim':
             print(bcolors.laranja+'Os comandos possiveis são: A - B - C - D - ajuda - pula - parar'+bcolors.reset)
 
         elif resposta == 'sair':
-            jogo = False
             print(bcolors.roxo+'\nQue pena! Você saiu com R${:.2f}'.format(lista_de_valores[i]))
+            jogar_novamente=input(bcolors.azul_claro+'Quer jogar novamente[S/N]?'+ bcolors.reset)
+            if jogar_novamente == 'N':
+                print('Até a próxima!')
+                break
+            else:
+                pergunta = sorteia_questao_inedida(transforma, 'facil', ja_sorteada)
 
         else:
-            jogo = False
-            print(bcolors.roxo+'O jogo acabou para você, espero que tenha aproveitado!')
+            print(bcolors.roxo+'O jogo acabou para você, espero que tenha aproveitado!'+bcolors.reset)
+            jogar_novamente=input(bcolors.azul_claro+'Quer jogar novamente[S/N]?'+ bcolors.reset)
+            if jogar_novamente == 'N':
+                print('Até a próxima!')
+                break
+            else:
+                pergunta = sorteia_questao_inedida(transforma, 'facil', ja_sorteada)
+
+
+                
+
+
 
 
         
