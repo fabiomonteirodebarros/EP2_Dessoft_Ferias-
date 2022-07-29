@@ -88,14 +88,15 @@ def questao_para_texto(dic, indice):
 #Função Gera Ajuda em uma Questão:
 import random
 
-def gera_ajuda(dic):
-    for alg,alt in dic['opcoes'].items():
-        qtd=random.randint(1,2)
-        dica=random.choice(alt)
-        if dica != dic['correta']:
-            dica=random.choice(alt)
-        if qtd>=1:
-            txt='DICA:\nOpções certamente erradas: {0}'.format (dica)
-        else:
-            txt='DICA:\nOpções certamente erradas: {0} | {1}'.format (dica,dica)
-    return txt
+def gera_ajuda(questao):
+    lista_pode=[]
+    for perg,alt in questao['opcoes'].items():
+        if perg != questao['correta']:
+            lista_pode.append(alt)
+    
+    num = random.randint(1,2)
+    tip = random.sample(lista_pode, k=num)
+
+    texto1= 'DICA:\n'
+    texto1 += 'Opçoes certamente erradas: ' + ' |'.join(tip)
+    return texto1

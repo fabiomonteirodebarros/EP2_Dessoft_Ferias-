@@ -74,26 +74,26 @@ if sim == 'sim':
             pergunta = sorteia_questao_inedida(transforma, nivel, ja_sorteada)
 
         elif resposta== 'pula':
-            pulo -= 1
             if pulo <=0:
                 print(bcolors.vermelho+'Você já gastou todos os seus pulos'+bcolors.reset)
             else:
                 print(bcolors.amarelo+'Você utilizou um de seus pulos. Seu prêmio atual é R$ {:.2f}'.format(lista_de_valores[i])+bcolors.reset)
-                print(bcolors.laranja+'Agora restam {} pulo(s)'.format(pulo)+bcolors.reset)
+                print(bcolors.laranja+'Agora restam {} pulo(s)'.format(pulo-1)+bcolors.reset)
                 acerto += 1
                 indice += 1
                 i += 1
                 pergunta = sorteia_questao_inedida(transforma, nivel, ja_sorteada)
+            pulo -= 1
 
         elif resposta == 'ajuda':
-            ajuda-=1
             if ajuda <=0:
                 print(bcolors.vermelho+'Você não tem mais ajuda disponível'+bcolors.reset)
-            else:
+            if ajuda>0:
                 help = gera_ajuda(pergunta)
                 print(bcolors.verde+help+bcolors.reset)
-                print('Número de ajudas disponíveis: {}'.format(ajuda))
-                resposta= input('\nDigite a alternativa correta: ')
+                print(bcolors.amarelo+'Número de ajudas disponíveis: {}'.format(ajuda-1)+bcolors.reset)
+            ajuda-=1
+
         
         elif resposta not in lista_comandos:
             print(bcolors.vermelho+'Essa opção é inválida!')
